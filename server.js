@@ -33,7 +33,7 @@ app.use((err, req, res, next) => {
 
 
 // --- Start the Server ---
-const PORT = process.env.PORT || 3000; // Use port from .env or default to 3000
+const PORT = process.env.PORT // Use port from .env or default to 3000
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
