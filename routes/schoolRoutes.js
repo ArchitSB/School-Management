@@ -5,23 +5,21 @@ const { addSchoolValidationRules, listSchoolsValidationRules, validate } = requi
 
 const router = express.Router();
 
-// Route to add a new school
+
 // POST /api/schools/addSchool
-// Applies validation rules first, then the controller logic
 router.post(
     '/addSchool',
-    addSchoolValidationRules(), // Define the rules
-    validate,                   // Execute the validation check
-    schoolController.addSchool  // Proceed to controller if valid
+    addSchoolValidationRules(),
+    validate,
+    schoolController.addSchool
 );
 
-// Route to list schools sorted by proximity
 // GET /api/schools/listSchools?latitude=USER_LAT&longitude=USER_LON
 router.get(
     '/listSchools',
-    listSchoolsValidationRules(), // Define query param rules
-    validate,                     // Execute validation
-    schoolController.listSchools  // Proceed to controller
+    listSchoolsValidationRules(),
+    validate,
+    schoolController.listSchools
 );
 
 

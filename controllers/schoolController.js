@@ -1,13 +1,8 @@
-// controllers/schoolController.js
-const dbPool = require('../config/db'); // Import the database connection pool
-const calculateDistance = require('../utils/distance'); // Import distance calculator
+const dbPool = require('../config/db');
+const calculateDistance = require('../utils/distance'); 
 
-/**
- * Controller to add a new school to the database.
- * Handles POST /addSchool requests.
- */
 const addSchool = async (req, res) => {
-  // Validation is handled by middleware, so we assume data is valid here
+  // Validation for request body is handled by middleware
   const { name, address, latitude, longitude } = req.body;
 
   try {
@@ -26,10 +21,7 @@ const addSchool = async (req, res) => {
   }
 };
 
-/**
- * Controller to list all schools, sorted by proximity to user's location.
- * Handles GET /listSchools requests.
- */
+
 const listSchools = async (req, res) => {
   // Validation for query parameters is handled by middleware
   const userLatitude = req.query.latitude;
@@ -44,7 +36,7 @@ const listSchools = async (req, res) => {
       return res.status(200).json([]); // Return empty array if no schools found
     }
 
-    // Calculate distance for each school and add it to the object
+    // Calculating distance for each school from the user's location
     const schoolsWithDistance = schools.map(school => {
       const distance = calculateDistance(
         userLatitude,
@@ -53,13 +45,12 @@ const listSchools = async (req, res) => {
         school.longitude
       );
       // Return a new object combining school data and the calculated distance
-      return { ...school, distance: parseFloat(distance.toFixed(2)) }; // Keep 2 decimal places for distance
+      return { ...school, distance: parseFloat(distance.toFixed(2)) }; 
     });
 
-    // Sort schools by distance (ascending)
     schoolsWithDistance.sort((a, b) => a.distance - b.distance);
 
-    res.status(200).json(schoolsWithDistance); // Return the sorted list
+    res.status(200).json(schoolsWithDistance);
   } catch (error) {
     console.error('Error listing schools:', error);
     res.status(500).json({ message: 'Failed to retrieve schools due to a server error.' });

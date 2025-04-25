@@ -1,7 +1,5 @@
-// middleware/validation.js
 const { check, validationResult } = require('express-validator');
 
-// Validation rules for adding a school
 const addSchoolValidationRules = () => {
   return [
     // name must not be empty
@@ -34,7 +32,7 @@ const addSchoolValidationRules = () => {
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
-    return next(); // Proceed to the controller if no errors
+    return next();
   }
 
   // Collect error messages
@@ -47,7 +45,6 @@ const validate = (req, res, next) => {
   });
 };
 
-// Validation rules for listing schools (query parameters)
 const listSchoolsValidationRules = () => {
     return [
         check('latitude')
