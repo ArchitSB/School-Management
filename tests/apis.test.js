@@ -3,6 +3,7 @@ const app = require('../server');
 const { pool } = require('../config/db');
 
 describe('School Routes', () => {
+  //test for the addSchool route
   describe('POST /api/schools/addSchool', () => {
     it('should add a new school with valid data', async () => {
         const res = await request(app)
@@ -25,6 +26,7 @@ describe('School Routes', () => {
         expect(res.body.data).toHaveProperty('address', '123 Main St');
       });
 
+    //test for missing fields
     it('should return validation error for missing fields', async () => {
       const res = await request(app)
         .post('/api/schools/addSchool')
@@ -35,7 +37,7 @@ describe('School Routes', () => {
       expect(res.body).toHaveProperty('errors');
     });
   });
-
+  //test for listSchools route
   describe('GET /api/schools/listSchools', () => {
     it('should list schools sorted by proximity', async () => {
       const res = await request(app)

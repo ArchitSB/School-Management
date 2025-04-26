@@ -18,13 +18,13 @@ const addSchoolValidationRules = () => {
     check('latitude')
         .notEmpty().withMessage('Latitude is required.')
         .isFloat().withMessage('Latitude must be a valid number.')
-        .toFloat(), // Convert to float
+        .toFloat(),
 
     // longitude must be a valid float
     check('longitude')
         .notEmpty().withMessage('Longitude is required.')
         .isFloat().withMessage('Longitude must be a valid number.')
-        .toFloat() // Convert to float
+        .toFloat()
   ];
 };
 

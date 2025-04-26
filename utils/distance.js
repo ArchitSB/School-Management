@@ -1,7 +1,4 @@
-// utils/distance.js
-
 /**
- * Calculates the Haversine distance between two points on the Earth.
  * @param {number} lat1 Latitude of the first point.
  * @param {number} lon1 Longitude of the first point.
  * @param {number} lat2 Latitude of the second point.

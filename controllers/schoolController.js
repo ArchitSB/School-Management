@@ -36,7 +36,6 @@ const listSchools = async (req, res) => {
       return res.status(200).json([]); // Return empty array if no schools found
     }
 
-    // Calculating distance for each school from the user's location
     const schoolsWithDistance = schools.map(school => {
       const distance = calculateDistance(
         userLatitude,
@@ -45,7 +44,7 @@ const listSchools = async (req, res) => {
         school.longitude
       );
       // Return a new object combining school data and the calculated distance
-      return { ...school, distance: parseFloat(distance.toFixed(2)) }; 
+      return { ...school, distance: parseFloat(distance.toFixed(2)) };
     });
 
     schoolsWithDistance.sort((a, b) => a.distance - b.distance);

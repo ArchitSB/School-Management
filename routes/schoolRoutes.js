@@ -1,4 +1,3 @@
-// routes/schoolRoutes.js
 const express = require('express');
 const schoolController = require('../controllers/schoolController');
 const { addSchoolValidationRules, listSchoolsValidationRules, validate } = require('../middleware/validation');
